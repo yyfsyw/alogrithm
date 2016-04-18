@@ -1,1 +1,24 @@
+Exercise 16.1-4 
+假设输入集合是一个以开始时间递增的序列，因此s1 ≤ s2 ≤ · · · ≤ sn. 
+如果不是这种情况，那么提前要排序，得用O（nlg(n) ). 
+这道题的目标是减少使用教室的数量。
+在下面的算法里，活动被指定到有序的教室中。下一个活动将被指派到已经使用过的教室中（如果可能的话）否则，另一个新的教室将被启用。
+算法包含两个部分
+（1）现在被使用的教室数量L
+（2）对于已经被安排过活动的教室的最早结束活动的时间 j, 1 ≤ j ≤ L
+ 和一个priority queue S (a heap) 来存储现在使用过的增序的 j(在算法导论第三版的section 7.5节里有详细解释)
+
+下面是本题的伪代码：
+L = 1;
+last(1) = s1 − 1;
+INSERT(S, 1);
+for i = 1 to n do {
+j = MINIMUM(S);
+if last(j) > si then
+j = L = L + 1; /*number of halls increases by 1*/
+else
+j = EXTRACT-MIN(S);
+schedule activity i in j-th hall;
+last(j) = fi;
+INSERT(S, j); }
 

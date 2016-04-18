@@ -22,3 +22,8 @@ schedule activity i in j-th hall;
 last(j) = fi;
 INSERT(S, j); }
 
+时间需要被安排，每个活动通过heap operations(需要O（lg(L)）) 。 因为最差的情况，每个活动安排在不懂的教室里，我们会有L ≤ n. 
+因此，去安排一个活动，我们需要最多O(lg(n)). 与此同时， 所有的活动都可以被安排在O(nlg(n)). 因为排序最初的序列也是需要O(nlg(n)) time， 总时间依然为O(nlg(n))
+我们依然需要证明算法的正确性。换句话说，我们需要去表明这个算法什么时候会被终结，数量L 的教室是个最优解。
+让我们首先证明一个循环不变量（loop invariant）
+“At the end of i-th iteration of the for loop, the number L is the optimal 1 number of halls needed to schedule activities 1, 2, · · · , i”. （使用贪心算法的必要条件）

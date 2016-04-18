@@ -27,3 +27,21 @@ INSERT(S, j); }
 我们依然需要证明算法的正确性。换句话说，我们需要去表明这个算法什么时候会被终结，数量L 的教室是个最优解。
 让我们首先证明一个循环不变量（loop invariant）
 “At the end of i-th iteration of the for loop, the number L is the optimal 1 number of halls needed to schedule activities 1, 2, · · · , i”. （使用贪心算法的必要条件）
+
+
+
+
+很明显，在第一次循环过后，依然正确。因为至少一个教室需要被第一个活动所用。
+Proof by induction.
+假设statement holds up to iteration i-1 并且 考虑到 ith 次循环的情况。
+
+有两个情况需要被考虑，
+Case1：教室的数量并没有增加在经历了第ith 循环
+因为L 曾是 前 i-1 个活动的最优解， 它保留最优解，因为活动i是成功被指定在已经使用过的教室里。
+
+case 2: 教室数量L增长在第ith 次循环期间。 这种情况下，第ith 个活动 与 最后一个被安排的活动重叠在每一个被当前使用过的教室里。更准确的说，让k作为最后一个被使用在任何一个教室里的活动。因为活动呗安排为以开始时间增长的序列里，我们有si ≥ sk 作为条件。
+又因为第ith 个活动与第kth个活动重叠，我们又有si < fk. 这就意味着 si ∈ [sk, fk). 
+
+
+
+与此同时，Si 是一个共同点在所有上一个活动（last activities）里（他们曾是 L-1 before L increased）在当前所被使用过的教室里。因此，活动i 和 所有 （L-1）个上个活动里（last activities）在当前所被使用过的教室里互相的（mutually）重合.这意味着至少 L 个教室（value of L at end of i-th iteration） 被要求去安排这些活动。 这也证明了 L 存在于最优解中。 以上的 invariant意味着在第n-th次循环后，L 是被需要安排在哪个活动里的最优解的教室的数量
